@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikhsan Tri Handoko — Software Developer & Hardware Specialist</title>
+  
+  <!-- Fonts: Geist / Inter aesthetic via Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons (for authentic Brand Logos: GitHub, LinkedIn) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0284c7', // Electric blue accent
+            darkBg: '#09090b',
+            darkCard: '#121215',
+            darkBorder: '#27272a',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Cute & Minimalist Native SVG Cursor */
+    * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 2L10 20L13 13L20 10L4 2Z" fill="%230284c7" stroke="%23ffffff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="17" cy="17" r="3.5" fill="%2310b981"/></svg>') 3 2, auto !important;
+    }
+    a, button, input, label, [role="button"], .interactive-card {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" fill="%230284c7" stroke="%23ffffff" stroke-width="2"/><path d="M13 8V18M8 13H18" stroke="%23ffffff" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="7" r="2.5" fill="%23f59e0b"/></svg>') 13 13, pointer !important;
+    }
+
+    /* Blink full: hilang (0%) -> muncul (100%) -> hilang (0%) */
+    @keyframes blink-fade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    .animate-blink {
+      animation: blink-fade 2.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Print CV */
+    @media print {
+      body * { visibility: hidden; }
+      #cv-modal-content, #cv-modal-content * { visibility: visible; }
+      #cv-modal-content {
+        position: absolute; left: 0; top: 0; width: 100%;
+        background: white !important; color: black !important;
+        box-shadow: none !important; border: none !important; padding: 0 !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-darkBg text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-brand selection:text-white transition-colors duration-200 min-h-screen">
+
+  <!-- Header Navigation Bar -->
+  <header class="w-full max-w-3xl mx-auto px-6 py-8 flex items-center justify-between">
+    <!-- Logo Text -->
+    <a href="#" class="font-extrabold tracking-wider text-base uppercase text-zinc-900 dark:text-white hover:text-brand transition-colors">
+      IKHSAN
+    </a>
+
+    <!-- Nav Links + Theme Switcher -->
+    <div class="flex items-center space-x-6 text-sm text-zinc-500 dark:text-zinc-400">
+      <nav class="hidden sm:flex items-center space-x-5">
+        <a href="#projects" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Projects</a>
+        <a href="#experience" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
+        <a href="#skills" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Tech Stack</a>
+        <a href="#about" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">About</a>
+      </nav>
+
+      <span class="hidden sm:inline text-zinc-300 dark:text-zinc-700">|</span>
+
+      <!-- Theme Switcher -->
+      <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-colors" title="Toggle Dark/Light Mode">
+        <i data-lucide="sun" id="theme-icon" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="w-full max-w-3xl mx-auto px-6 pb-28 space-y-16">
+
+    <!-- Hero / Profile Intro Section -->
+    <section class="pt-4 space-y-6">
+      
+      <!-- Avatar & Name Header (Proportional layout) -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <!-- Interactive Avatar with Click to Swap & In-Circle "Tap to reveal" Overlay -->
+        <div class="relative group cursor-pointer flex-shrink-0" onclick="toggleAvatar()" title="Klik untuk beralih foto Sketsa / Ikhsan">
+          <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-zinc-200 dark:border-zinc-700 shadow-sm bg-white dark:bg-zinc-900 transition-transform duration-300 group-hover:scale-105 active:scale-95">
+            <img 
+              id="profile-img" 
+              src="sketch_face.jpg" 
+              alt="Avatar (Sketch / Ikhsan)" 
+              class="w-full h-full object-cover object-center opacity-95"
+            />
+
+            <!-- In-Circle Centered Frosted Overlay -->
+            <div id="avatar-overlay" class="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-200 group-hover:bg-black/30 pointer-events-none p-1">
+              <span class="text-[10px] sm:text-xs font-semibold tracking-tight text-white leading-none text-center select-none animate-blink drop-shadow-sm">
+                Tap to reveal
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center space-x-2">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Ikhsan Tri Handoko</h1>
+            <!-- Blue Verified Badge -->
+            <svg class="w-5 h-5 text-brand inline-block flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            Software Developer · Web Builder · Electronics Specialist
+          </p>
+          
+          <!-- Social Link Icons -->
+          <div class="flex items-center space-x-4 mt-3 text-zinc-500 dark:text-zinc-400">
+            <a href="https://github.com/Si-isann" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-transform hover:-translate-y-0.5" title="GitHub: Si-isann" aria-label="GitHub">
+              <i class="fa-brands fa-github text-xl"></i>
+            </a>
+            <a href="https://linkedin.com/in/san-isan" target="_blank" rel="noopener noreferrer" class="hover:text-[#0077b5] transition-transform hover:-translate-y-0.5" title="LinkedIn: san-isan" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin text-xl"></i>
+            </a>
+            <a href="mailto:ikhsan.mailwork@gmail.com" class="hover:text-brand transition-transform hover:-translate-y-0.5" title="Email: ikhsan.mailwork@gmail.com" aria-label="Email">
+              <i class="fa-regular fa-envelope text-xl"></i>
+            </a>
+            <button onclick="openCvModal()" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-transform hover:-translate-y-0.5 flex items-center space-x-1.5 text-xs font-mono font-medium pl-1" title="Curriculum Vitae" aria-label="CV">
+              <i class="fa-regular fa-file-lines text-lg"></i>
+              <span>CV</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Headline & Bio Copy (Editorial Typography) -->
+      <div class="space-y-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+          I Build, Create & <span class="text-brand">Optimize.</span>
+        </h2>
+        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal">
+          <p>
+            Mahasiswa <strong class="text-zinc-900 dark:text-white font-semibold">Teknik Informatika</strong> dengan latar belakang teknis di bidang pengembangan perangkat lunak, pembuatan website, dan desain antarmuka pengguna, serta aktif mendalami <strong class="text-brand dark:text-blue-400 font-semibold">AI Agent</strong> untuk otomasi keperluan sehari-hari.
+          </p>
+          <p>
+            Berpengalaman magang sebagai <strong class="text-zinc-900 dark:text-white font-semibold">Jr. Programmer</strong> dalam aplikasi mobile, serta memiliki keahlian praktis sebagai dealer, broker, sekaligus teknisi servis perangkat elektronik (laptop, smartphone, konsol Nintendo, dan perangkat lainnya).
+          </p>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+            Mudah berinteraksi dengan beragam orang, adaptif di lingkungan dinamis, serta memadukan keterampilan teknis, problem solving, dan semangat belajar tinggi untuk berkontribusi maksimal dalam tim profesional.
+          </p>
+        </div>
+      </div>
+
+      <!-- Resume Button -->
+      <div>
+        <button onclick="openCvModal()" class="group inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-3 rounded-lg text-sm sm:text-base font-medium hover:scale-[1.03] transition-transform shadow-sm">
+          <span>View Resume</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        </button>
+      </div>
+
+      <!-- Professional Highlights / Metrics Cards -->
+      <div class="grid grid-cols-3 gap-2 pt-4 sm:gap-4 sm:pt-5" aria-label="Professional highlights">
+        <div class="flex min-h-24 min-w-0 flex-col justify-between rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent p-3 transition-colors hover:border-zinc-400 dark:hover:border-zinc-600 sm:p-4">
+          <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
+            4<span class="text-[#0284c7]">+</span>
+          </p>
+          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+            Years of Experience
+          </p>
+        </div>
+
+        <div class="flex min-h-24 min-w-0 flex-col justify-between rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent p-3 transition-colors hover:border-zinc-400 dark:hover:border-zinc-600 sm:p-4">
+          <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
+            9<span class="text-[#0284c7]">+</span>
+          </p>
+          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+            Websites Built
+          </p>
+        </div>
+
+        <!-- Card 3: Technical & IT Support Coverage -->
+        <div class="flex min-h-24 min-w-0 flex-col justify-between rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent p-3 transition-colors hover:border-zinc-400 dark:hover:border-zinc-600 sm:p-4">
+          <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
+            End-to-End
+          </p>
+          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+            Technical & IT Support
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Experience Section (Timeline style) -->
+    <section id="experience" class="space-y-6 pt-4 border-t border-zinc-100 dark:border-darkBorder">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Experience</h3>
+        <button onclick="openCvModal()" class="text-xs font-medium text-brand hover:underline flex items-center space-x-1">
+          <span>View Details</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-6">
+        
+        <!-- Experience Item 1: IT Support Pasar Modal -->
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+          <div>
+            <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">IT Support</h4>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">PT Pusat Pendidikan Profesional Pasar Modal · Pekerja Lepas / Freelance</p>
+            <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+              <li>Membantu pengelolaan, pemeliharaan rutin, dan troubleshooting infrastruktur perangkat keras (PC/laptop) dan sistem operasional.</li>
+              <li>Monitoring, konfigurasi, dan pemecahan masalah jaringan internet, WiFi kantor, serta stabilitas konektivitas kerja.</li>
+              <li>Memberikan dukungan teknis (technical support) responsif bagi staf dan kelancaran kegiatan pelatihan/edukasi pasar modal.</li>
+            </ul>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">2023 – Sekarang</span>
+        </div>
+
+        <!-- Experience Item 2: Dealer & Broker -->
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+          <div>
+            <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Dealer & Broker Elektronik</h4>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">Independen · Pekerja Lepas / Freelance</p>
+            <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+              <li>Konsultasi spesifikasi produk elektronik (laptop, smartphone, handheld console) sesuai kebutuhan pelanggan.</li>
+              <li>Negosiasi harga jual-beli, inspeksi fisik/komponen, dan diagnosis hardware perangkat.</li>
+              <li>Membangun strategi promosi, pemasaran mandiri, serta garansi after-sales terpercaya.</li>
+            </ul>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Jan 2020 – Sekarang</span>
+        </div>
+
+        <!-- Experience Item 3: Jr Programmer -->
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+          <div>
+            <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Jr. Programmer (Magang)</h4>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">PT Immobi Solusi Prima</p>
+            <ul class="list-disc list-inside mt-1.5 text-xs text-zinc-500 dark:text-zinc-400 space-y-1">
+              <li>Mengembangkan antarmuka pengguna (UI) aplikasi mobile menggunakan React Native.</li>
+              <li>Menyelesaikan tugas debugging dan perbaikan performa sistem.</li>
+              <li>Menggunakan Git untuk version control dan manajemen kode proyek terstruktur.</li>
+            </ul>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Okt 2019 – Feb 2020</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="space-y-6 pt-4 border-t border-zinc-100 dark:border-darkBorder">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Featured Projects</h3>
+        <span class="text-xs text-zinc-400 dark:text-zinc-500 font-mono">9 Live Deployments</span>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="skills" class="space-y-4 pt-4 border-t border-zinc-100 dark:border-darkBorder">
+      <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Technologies</h3>
+      
+      <!-- Tech Pill Groups -->
+      <div class="space-y-3">
+        <div>
+          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Frontend & Interface</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium">
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">React 19</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Next.js</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">TypeScript</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Tailwind CSS</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Vite</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Technical SEO & Web Vitals</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">GSAP Animations</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Backend & Database</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium">
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">PHP</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Laravel</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">CodeIgniter</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">MySQL</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">PostgreSQL</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Python</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Autonomous AI Agents</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Node.js</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">REST API</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Git & GitHub</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Hardware & Networking</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium">
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Jaringan Internet / WiFi & Routing</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Laptop / PC Diagnostics</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Smartphone Component Repair</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Nintendo Console Modding</span>
+            <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Broker & Gadget Inspection</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="about" class="space-y-4 pt-4 border-t border-zinc-100 dark:border-darkBorder">
+      <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Education</h3>
+      <div class="space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+          <div>
+            <h4 class="font-bold text-zinc-900 dark:text-white">Teknik Informatika — Universitas Indraprasta PGRI (UNINDRA)</h4>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">Strata 1 (S1) · IPK: <strong>3,35</strong></p>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">Sep 2022 – Sekarang</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+          <div>
+            <h4 class="font-bold text-zinc-900 dark:text-white">Rekayasa Perangkat Lunak (RPL) — SMKN 1 Kota Bekasi</h4>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">Fokus Pemrograman, Rekayasa Perangkat Lunak & Logika Komputasi</p>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">2018 – 2021</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-8 border-t border-zinc-100 dark:border-darkBorder flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 gap-4">
+      <p>© 2026 Ikhsan Tri Handoko — Built with clean minimalism.</p>
+      <div class="flex items-center space-x-4">
+        <a href="mailto:ikhsan.mailwork@gmail.com" class="hover:text-zinc-900 dark:hover:text-zinc-100">Contact</a>
+        <span>•</span>
+        <button onclick="openCvModal()" class="hover:text-zinc-900 dark:hover:text-zinc-100">Resume</button>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Persistent Floating Bottom-Right Lead CTA -->
+  <aside class="fixed bottom-6 right-6 z-40">
+    <a href="mailto:ikhsan.mailwork@gmail.com" class="inline-flex items-center space-x-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2.5 rounded-full text-xs font-semibold shadow-xl hover:scale-105 transition-transform border border-zinc-800 dark:border-zinc-200">
+      <i data-lucide="briefcase" class="w-3.5 h-3.5 text-brand"></i>
+      <span>Work with Ikhsan</span>
+    </a>
+  </aside>
+
+  <!-- Project Detail Modal with Carousel (Preserved) -->
+  <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-darkCard border border-zinc-200 dark:border-darkBorder rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-zinc-900 dark:hover:text-white p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="project-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ATS-Ready Printable CV Drawer/Modal -->
+  <div id="cv-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl my-8">
+      
+      <div class="no-print flex items-center justify-between bg-zinc-900 text-white px-6 py-3.5 rounded-t-2xl">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="file-badge" class="w-4 h-4 text-brand"></i>
+          <span class="font-mono text-xs uppercase tracking-wider">Curriculum Vitae — ATS Format</span>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="window.print()" class="bg-brand hover:bg-sky-600 text-white px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider flex items-center space-x-1.5 transition-colors">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Cetak / Simpan PDF</span>
+          </button>
+          <button onclick="closeCvModal()" class="text-zinc-400 hover:text-white p-1">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="cv-modal-content" class="bg-white p-8 sm:p-12 text-zinc-900 border border-zinc-200 shadow-2xl rounded-b-2xl font-sans">
+        
+        <!-- Header -->
+        <div class="border-b-2 border-zinc-900 pb-6 mb-6">
+          <h1 class="text-3xl font-bold tracking-tight text-zinc-900">IKHSAN TRI HANDOKO</h1>
+          <p class="text-base text-zinc-600 font-medium mt-1">Software Developer • Frontend & Mobile • Electronics Specialist</p>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs font-mono text-zinc-500">
+            <span>Email: <strong class="text-zinc-800">ikhsan.mailwork@gmail.com</strong></span>
+            <span>•</span>
+            <span>WhatsApp: <strong class="text-zinc-800">0882-2400-1992</strong></span>
+            <span>•</span>
+            <span>Domisili: <strong class="text-zinc-800">Cibarusah Indah, Jawa Barat</strong></span>
+          </div>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs font-mono text-zinc-500">
+            <span>GitHub: <a href="https://github.com/Si-isann" target="_blank" class="text-brand underline">github.com/Si-isann</a></span>
+            <span>•</span>
+            <span>LinkedIn: <a href="https://linkedin.com/in/san-isan" target="_blank" class="text-brand underline">linkedin.com/in/san-isan</a></span>
+            <span>•</span>
+            <span>Lahir: Agustus 2003</span>
+          </div>
+        </div>
+
+        <!-- Profil (Dipertahankan sesuai permintaan) -->
+        <div class="mb-6">
+          <h2 class="text-xs font-mono uppercase tracking-widest font-bold text-zinc-900 border-b border-zinc-200 pb-1 mb-2">PROFIL / RINGKASAN PROFESIONAL</h2>
+          <p class="text-xs sm:text-sm text-zinc-700 leading-relaxed font-light">
+            Mahasiswa Teknik Informatika dengan latar belakang teknis di bidang pengembangan perangkat lunak, pembuatan website, dan desain antarmuka pengguna, serta saat ini sedang aktif mendalami pengembangan AI Agent untuk otomasi keperluan sehari-hari. Mudah berinteraksi dengan beragam orang dan cepat beradaptasi dalam lingkungan kerja yang dinamis. Berpengalaman magang sebagai Jr. Programmer dalam pengembangan aplikasi mobile, serta memiliki keahlian praktis sebagai dealer, broker, sekaligus teknisi servis perangkat elektronik seperti laptop, smartphone, konsol Nintendo, dan perangkat lainnya. Yakin bahwa kombinasi keterampilan teknis, kemampuan pemecahan masalah, dan semangat belajar yang tinggi akan menjadi nilai tambah sebagai bagian dari tim profesional.
+          </p>
+        </div>
+
+        <!-- Keterampilan -->
+        <div class="mb-6">
+          <h2 class="text-xs font-mono uppercase tracking-widest font-bold text-zinc-900 border-b border-zinc-200 pb-1 mb-2">KETERAMPILAN (SKILLS)</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs leading-normal">
+            <div>
+              <p class="font-bold text-zinc-900 mb-1">Hard Skills:</p>
+              <ul class="text-zinc-600 space-y-1 list-disc list-inside">
+                <li><strong class="text-zinc-800">Pemrograman:</strong> PHP, JavaScript, React Native, Python</li>
+                <li><strong class="text-zinc-800">Framework:</strong> Laravel, CodeIgniter, Next.js, React</li>
+                <li><strong class="text-zinc-800">Database:</strong> MySQL, PostgreSQL, SQLite</li>
+                <li><strong class="text-zinc-800">Infrastruktur & Jaringan:</strong> Jaringan Internet / WiFi & Routing, Hardware Diagnostics</li>
+                <li><strong class="text-zinc-800">Frontend & Tools:</strong> HTML5, CSS3, Tailwind CSS, Technical SEO & Web Performance, Git & GitHub, VS Code</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-bold text-zinc-900 mb-1">Soft Skills & Bahasa:</p>
+              <ul class="text-zinc-600 space-y-1 list-disc list-inside">
+                <li>Komunikasi yang baik (lisan & tulisan)</li>
+                <li>Problem solving & berpikir analitis</li>
+                <li>Kemampuan negosiasi bisnis & konsultasi</li>
+                <li>Kerja tim, kolaborasi, mandiri & disiplin</li>
+                <li>Cepat belajar & adaptif terhadap teknologi baru</li>
+                <li><strong class="text-zinc-800">Bahasa:</strong> Indonesia (Penutur asli), Inggris (Percakapan dasar)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pengalaman Kerja -->
+        <div class="mb-6">
+          <h2 class="text-xs font-mono uppercase tracking-widest font-bold text-zinc-900 border-b border-zinc-200 pb-1 mb-3">PENGALAMAN KERJA</h2>
+          
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div>
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-bold text-zinc-900">IT Support — PT Pusat Pendidikan Profesional Pasar Modal</h3>
+                <span class="font-mono text-xs text-zinc-500">2023 – Sekarang</span>
+              </div>
+              <p class="text-[11px] text-zinc-500 italic">Pekerja Lepas / Freelance</p>
+              <ul class="list-disc list-inside mt-1 text-xs text-zinc-600 space-y-1">
+                <li>Membantu pengelolaan, pemeliharaan rutin, dan troubleshooting infrastruktur perangkat keras (PC/laptop) dan sistem operasional.</li>
+                <li>Monitoring, konfigurasi, dan pemecahan masalah jaringan internet, WiFi kantor, serta stabilitas konektivitas kerja.</li>
+                <li>Memberikan dukungan teknis (technical support) responsif bagi staf dan kelancaran kegiatan pelatihan/edukasi pasar modal.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-bold text-zinc-900">Dealer & Broker Elektronik — Independen</h3>
+                <span class="font-mono text-xs text-zinc-500">Jan 2020 – Sekarang</span>
+              </div>
+              <p class="text-[11px] text-zinc-500 italic">Pekerja Lepas / Freelance</p>
+              <ul class="list-disc list-inside mt-1 text-xs text-zinc-600 space-y-1">
+                <li>Memberikan konsultasi kepada pelanggan terkait produk elektronik sesuai kebutuhan mereka.</li>
+                <li>Melakukan negosiasi harga dengan pelanggan, penjual, maupun mitra bisnis.</li>
+                <li>Membuat strategi pemasaran untuk meningkatkan penjualan (promosi, layanan after-sales, diskon).</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-bold text-zinc-900">Jr. Programmer (Magang) — PT Immobi Solusi Prima</h3>
+                <span class="font-mono text-xs text-zinc-500">Okt 2019 – Feb 2020</span>
+              </div>
+              <ul class="list-disc list-inside mt-1.5 text-xs text-zinc-600 space-y-1">
+                <li>Mengembangkan antarmuka pengguna (UI) yang responsif dan ramah pengguna menggunakan React Native.</li>
+                <li>Menyelesaikan tugas debugging dan pemecahan masalah berdasarkan masukan dari tim.</li>
+                <li>Menggunakan Git untuk version control dan manajemen kode proyek secara kolaboratif.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pendidikan -->
+        <div class="mb-6">
+          <h2 class="text-xs font-mono uppercase tracking-widest font-bold text-zinc-900 border-b border-zinc-200 pb-1 mb-2">PENDIDIKAN</h2>
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div class="flex justify-between items-baseline">
+              <div>
+                <p class="font-bold text-zinc-900">Teknik Informatika — Universitas Indraprasta PGRI (UNINDRA)</p>
+                <p class="text-zinc-600 text-xs">Strata 1 (S1) · IPK: <strong>3,35</strong></p>
+              </div>
+              <span class="font-mono text-xs text-zinc-500">Sep 2022 – Sekarang</span>
+            </div>
+
+            <div class="flex justify-between items-baseline">
+              <div>
+                <p class="font-bold text-zinc-900">Rekayasa Perangkat Lunak (RPL) — SMKN 1 Kota Bekasi</p>
+                <p class="text-zinc-600 text-xs">Fokus pada pemrograman dan pengembangan perangkat lunak</p>
+              </div>
+              <span class="font-mono text-xs text-zinc-500">2018 – 2021</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catatan -->
+        <div class="pt-2 border-t border-zinc-200 text-xs text-zinc-500">
+          <p><strong class="text-zinc-700">Catatan:</strong> Terbuka untuk kesempatan magang, full-time, maupun freelance di bidang pengembangan perangkat lunak, frontend, dan teknologi.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Include Projects Data (Cache-busted) -->
+  <script src="projects_data.js?v=20261102_03"></script>
+
+  <script>
+    // Lucide Icons
+    lucide.createIcons();
+
+    // Avatar Swap Logic (Default: Sketch -> Click: Ikhsan Normal)
+    let isSketch = true;
+    function toggleAvatar() {
+      const img = document.getElementById('profile-img');
+      const overlay = document.getElementById('avatar-overlay');
+      if (!img) return;
+      isSketch = !isSketch;
+      img.src = isSketch ? 'sketch_face.jpg' : 'profile_square.jpg';
+      img.className = isSketch
+        ? 'w-full h-full object-cover object-center opacity-95'
+        : 'w-full h-full object-cover object-center opacity-100';
+      if (overlay) {
+        overlay.classList.toggle('hidden', !isSketch);
+      }
+    }
+
+    // Theme Switcher (Light / Dark mode)
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+    }
+
+    function updateThemeIcon(isDark) {
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.setAttribute('data-lucide', isDark ? 'moon' : 'sun');
+        lucide.createIcons();
+      }
+    }
+
+    // Init Theme from Preference
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      updateThemeIcon(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      updateThemeIcon(false);
+    }
+
+    // Render Project Cards
+    const projectList = document.getElementById('project-list');
+    
+    function renderProjectCards() {
+      projectList.innerHTML = '';
+      ALPACODE_PROJECTS.forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'interactive-card group border border-zinc-200 dark:border-darkBorder rounded-xl p-4 bg-white dark:bg-darkCard hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between';
+        
+        const thumb = (p.screenshots && p.screenshots[0]) || 'profile.jpg';
+        
+        card.innerHTML = `
+          <div>
+            <!-- Project Image Banner -->
+            <div class="w-full h-44 rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-800 mb-3 relative cursor-pointer" onclick="openProjectModal(${p.id})">
+              <img src="${thumb}" alt="${p.title}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            </div>
+
+            <!-- Project Meta & Title -->
+            <div class="flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 mb-1 font-mono">
+              <span>${p.categoryLabel}</span>
+              <span>${p.year}</span>
+            </div>
+
+            <h4 class="font-bold text-zinc-900 dark:text-white text-base group-hover:text-brand transition-colors cursor-pointer" onclick="openProjectModal(${p.id})">
+              ${p.title}
+            </h4>
+
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 line-clamp-2 leading-relaxed">
+              ${p.summary}
+            </p>
+          </div>
+
+          <!-- Bottom Actions: Live Link + Details -->
+          <div class="pt-4 mt-3 border-t border-zinc-100 dark:border-darkBorder flex items-center justify-between">
+            <button onclick="openProjectModal(${p.id})" class="text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:text-brand flex items-center space-x-1">
+              <span>Detail Proyek</span>
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            </button>
+
+            ${p.liveUrl ? `
+              <a href="${p.liveUrl}" target="_blank" class="inline-flex items-center space-x-1 text-xs font-medium text-brand hover:underline">
+                <span>Live Site</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+            ` : ''}
+          </div>
+        `;
+        projectList.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // Modal Carousel Logic
+    const projectModal = document.getElementById('project-modal');
+    const projectModalBody = document.getElementById('project-modal-body');
+    let currentSlideIdx = 0;
+    let currentProjectShots = [];
+
+    function updateCarousel() {
+      const imgEl = document.getElementById('carousel-img');
+      const counterEl = document.getElementById('carousel-counter');
+      if (imgEl && currentProjectShots.length > 0) {
+        imgEl.src = currentProjectShots[currentSlideIdx];
+      }
+      if (counterEl) {
+        counterEl.innerText = `${currentSlideIdx + 1} / ${currentProjectShots.length}`;
+      }
+    }
+
+    function prevSlide() {
+      if (currentProjectShots.length === 0) return;
+      currentSlideIdx = (currentSlideIdx - 1 + currentProjectShots.length) % currentProjectShots.length;
+      updateCarousel();
+    }
+
+    function nextSlide() {
+      if (currentProjectShots.length === 0) return;
+      currentSlideIdx = (currentSlideIdx + 1) % currentProjectShots.length;
+      updateCarousel();
+    }
+
+    function openProjectModal(projectId) {
+      const p = ALPACODE_PROJECTS.find(item => item.id === projectId);
+      if (!p) return;
+
+      currentProjectShots = p.screenshots || [p.image];
+      currentSlideIdx = 0;
+
+      const techBadges = (p.techStack || []).map(t => 
+        `<span class="font-mono text-xs bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2.5 py-1 rounded text-zinc-800 dark:text-zinc-200">${t}</span>`
+      ).join('');
+
+      const featureList = (p.features || []).map(f => 
+        `<li class="flex items-start space-x-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+          <span class="text-brand font-bold">✓</span>
+          <span>${f}</span>
+        </li>`
+      ).join('');
+
+      const statsHtml = p.stats ? `
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-5 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-darkBorder">
+          ${Object.entries(p.stats).map(([k, v]) => `
+            <div>
+              <p class="font-mono text-[10px] uppercase text-zinc-400 tracking-wider">${k}</p>
+              <p class="font-bold text-xs sm:text-sm text-zinc-900 dark:text-white mt-0.5">${v}</p>
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
+      const liveBtn = p.liveUrl 
+        ? `<a href="${p.liveUrl}" target="_blank" class="bg-brand hover:bg-sky-600 text-white px-5 py-2.5 rounded-full text-xs font-semibold flex items-center space-x-2 transition-colors shadow-sm">
+            <span>Buka Website Live</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>`
+        : '';
+
+      projectModalBody.innerHTML = `
+        <!-- Carousel Screen Viewport -->
+        <div class="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-6 border border-zinc-200 dark:border-darkBorder">
+          <img id="carousel-img" src="${currentProjectShots[0]}" class="w-full h-full object-cover object-top transition-opacity duration-300" alt="${p.title}" />
+          
+          <div class="absolute top-3 left-3 bg-white/95 dark:bg-zinc-900/95 border border-zinc-200 dark:border-zinc-700 px-3 py-1 rounded-md font-mono text-[11px] text-zinc-900 dark:text-white shadow-sm">
+            ${p.categoryLabel}
+          </div>
+
+          <div id="carousel-counter" class="absolute top-3 right-3 bg-black/85 text-white px-2.5 py-1 rounded-md font-mono text-[11px]">
+            1 / ${currentProjectShots.length}
+          </div>
+
+          <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 dark:bg-zinc-900/90 hover:bg-white text-zinc-900 dark:text-white shadow-lg border border-zinc-200 dark:border-zinc-700 flex items-center justify-center transition-transform hover:scale-110">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 dark:bg-zinc-900/90 hover:bg-white text-zinc-900 dark:text-white shadow-lg border border-zinc-200 dark:border-zinc-700 flex items-center justify-center transition-transform hover:scale-110">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+        
+        <div class="flex items-center space-x-3 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-2">
+          <span>Klien: <strong class="text-zinc-800 dark:text-zinc-200">${p.client}</strong></span>
+          <span>•</span>
+          <span>Tahun: <strong class="text-zinc-800 dark:text-zinc-200">${p.year}</strong></span>
+        </div>
+
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white mt-1 mb-3">${p.title}</h3>
+        
+        <div class="space-y-3 mb-5">
+          <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">${p.fullDescription}</p>
+          ${p.problemSolved ? `
+            <div class="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border-l-2 border-brand text-xs text-zinc-500 dark:text-zinc-400">
+              <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Tantangan & Solusi Teknis:</strong> ${p.problemSolved}
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="mb-5">
+          <p class="font-mono text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider font-semibold mb-2">Fitur Terintegrasi:</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">${featureList}</ul>
+        </div>
+        
+        ${statsHtml}
+
+        <div class="space-y-2 mb-6">
+          <p class="font-mono text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider font-semibold">Tech Stack:</p>
+          <div class="flex flex-wrap gap-2">${techBadges}</div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-darkBorder">
+          ${liveBtn}
+          <button onclick="closeProjectModal()" class="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-zinc-800 transition-colors ml-auto">Tutup</button>
+        </div>
+      `;
+
+      projectModal.classList.remove('hidden');
+      projectModal.classList.add('flex');
+      lucide.createIcons();
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.add('hidden');
+      projectModal.classList.remove('flex');
+    }
+
+    // CV Modal
+    const cvModal = document.getElementById('cv-modal');
+    function openCvModal() {
+      cvModal.classList.remove('hidden');
+      cvModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+    function closeCvModal() {
+      cvModal.classList.add('hidden');
+      cvModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.addEventListener('click', (e) => {
+      if (e.target === projectModal) closeProjectModal();
+      if (e.target === cvModal) closeCvModal();
+    });
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProjectCards();
+    });
+  </script>
+</body>
+</html>
