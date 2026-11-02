@@ -387,18 +387,19 @@
   </div>
 
   <!-- ATS-Ready Printable CV Drawer/Modal -->
-  <div id="cv-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="relative w-full max-w-3xl my-8">
-      
-      <div class="no-print flex items-center justify-between bg-zinc-900 text-white px-6 py-3.5 rounded-t-2xl">
+  <div id="cv-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl min-h-full sm:min-h-0 sm:my-8 flex flex-col justify-start">
+
+      <div class="no-print sticky top-0 z-10 flex items-center justify-between bg-zinc-900 text-white px-4 sm:px-6 py-3 sm:py-3.5 rounded-none sm:rounded-t-2xl border-b border-zinc-800">
         <div class="flex items-center space-x-2">
           <i data-lucide="file-badge" class="w-4 h-4 text-brand"></i>
           <span class="font-mono text-xs uppercase tracking-wider">Curriculum Vitae — ATS Format</span>
         </div>
-        <div class="flex items-center space-x-3">
-          <button onclick="window.print()" class="bg-brand hover:bg-sky-600 text-white px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider flex items-center space-x-1.5 transition-colors">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <button onclick="window.print()" class="bg-brand hover:bg-sky-600 text-white px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider flex items-center space-x-1.5 transition-colors">
             <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-            <span>Cetak / Simpan PDF</span>
+            <span class="hidden sm:inline">Cetak / Simpan PDF</span>
+            <span class="sm:hidden">Cetak</span>
           </button>
           <button onclick="closeCvModal()" class="text-zinc-400 hover:text-white p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
@@ -406,7 +407,7 @@
         </div>
       </div>
 
-      <div id="cv-modal-content" class="bg-white p-8 sm:p-12 text-zinc-900 border border-zinc-200 shadow-2xl rounded-b-2xl font-sans">
+      <div id="cv-modal-content" class="bg-white flex-1 p-5 sm:p-12 text-zinc-900 border-x-0 sm:border-x border-b-0 sm:border-b border-zinc-200 shadow-2xl rounded-none sm:rounded-b-2xl font-sans">
         
         <!-- Header -->
         <div class="border-b-2 border-zinc-900 pb-6 mb-6">
