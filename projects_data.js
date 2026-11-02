@@ -37,6 +37,41 @@ const ALPACODE_PROJECTS = [
   },
   {
     "id": 2,
+    "title": "PT. Trisula Energi Prima — Corporate Website",
+    "client": "PT. Trisula Energi Prima",
+    "year": "2026",
+    "category": "commercial",
+    "categoryLabel": "Energy & Oil-Gas Corporate Portal",
+    "summary": "Website profil korporat resmi penyedia barang dan jasa penunjang sektor MIGAS berestetika industri modern dengan showcase layanan komprehensif dan kontak terintegrasi.",
+    "fullDescription": "Website profil korporat resmi PT. Trisula Energi Prima (trienma.com) yang dirancang khusus untuk mempresentasikan kredibilitas penyedia barang dan jasa penunjang sektor minyak dan gas bumi (MIGAS). Mengadopsi arsitektur web performa tinggi dengan navigasi responsif, pendekatan Human-to-Human (H2H), showcase keunggulan standar mutu keselamatan K3, katalog layanan industri komprehensif, serta integrasi formulir kontak langsung.",
+    "problemSolved": "Menghadirkan representasi digital kredibel dan berstandar industri bagi perusahaan penunjang migas untuk memperkuat kepercayaan klien korporat, mitra kontraktor, dan stakeholder.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Responsive Layout",
+      "Modern Typography",
+      "Corporate SEO"
+    ],
+    "liveUrl": "https://trienma.com",
+    "screenshots": [
+      "screenshots/trienma_1.jpg",
+      "screenshots/trienma_2.jpg",
+      "screenshots/trienma_3.jpg"
+    ],
+    "features": [
+      "Modern Industrial Hero & Value Proposition Showcase",
+      "Rangkaian Layanan Penunjang Sektor Migas Komprehensif",
+      "Human-to-Human (H2H) & K3 Standard Compliance Section",
+      "Direct Inquiry & Contact Channels Integration"
+    ],
+    "metrics": {
+      "score": "100%",
+      "label": "Responsive & Cross-Device Compatibility"
+    }
+  },
+  {
+    "id": 3,
     "title": "Klaysia Property & Interior Design",
     "client": "Klaysia Property Group",
     "year": "2026",
@@ -74,7 +109,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "Klaysia - Architecture & Interior Design Studio",
     "client": "Klaysia Architecture Studio",
     "year": "2026",
@@ -111,7 +146,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "P4M - Lembaga Pendidikan Pasar Uang & Modal",
     "client": "P4M Financial & Market Institute",
     "year": "2026",
@@ -148,7 +183,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "Kanon & Partner - Corporate Advisory & Legal",
     "client": "Kanon & Partner Advisory",
     "year": "2026",
@@ -185,7 +220,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "Velo Bike Store - Toko Sepeda & Komponen",
     "client": "Velo Cycling Official",
     "year": "2026",
@@ -222,7 +257,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "title": "Ink Art Tattoo Studio & Artist Booking",
     "client": "Ink Art Tattoo Studio",
     "year": "2026",
@@ -259,7 +294,7 @@ const ALPACODE_PROJECTS = [
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "title": "Smart Laundry Management & Live Tracking",
     "client": "Smart Laundry Cloud POS",
     "year": "2026",
@@ -293,41 +328,6 @@ const ALPACODE_PROJECTS = [
       "Efisiensi Kasir": "+50%",
       "Kompatibilitas": "HP, Tablet, PC",
       "Status": "Live Production"
-    }
-  },
-  {
-    "id": 9,
-    "title": "PT. Trisula Energi Prima — Corporate Website",
-    "client": "PT. Trisula Energi Prima",
-    "year": "2026",
-    "category": "commercial",
-    "categoryLabel": "Energy & Oil-Gas Corporate Portal",
-    "summary": "Website profil korporat resmi penyedia barang dan jasa penunjang sektor MIGAS berestetika industri modern dengan showcase layanan komprehensif dan kontak terintegrasi.",
-    "fullDescription": "Website profil korporat resmi PT. Trisula Energi Prima (trienma.com) yang dirancang khusus untuk mempresentasikan kredibilitas penyedia barang dan jasa penunjang sektor minyak dan gas bumi (MIGAS). Mengadopsi arsitektur web performa tinggi dengan navigasi responsif, pendekatan Human-to-Human (H2H), showcase keunggulan standar mutu keselamatan K3, katalog layanan industri komprehensif, serta integrasi formulir kontak langsung.",
-    "problemSolved": "Menghadirkan representasi digital kredibel dan berstandar industri bagi perusahaan penunjang migas untuk memperkuat kepercayaan klien korporat, mitra kontraktor, dan stakeholder.",
-    "techStack": [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "Responsive Layout",
-      "Modern Typography",
-      "Corporate SEO"
-    ],
-    "liveUrl": "https://trienma.com",
-    "screenshots": [
-      "screenshots/trienma_1.jpg",
-      "screenshots/trienma_2.jpg",
-      "screenshots/trienma_3.jpg"
-    ],
-    "features": [
-      "Modern Industrial Hero & Value Proposition Showcase",
-      "Rangkaian Layanan Penunjang Sektor Migas Komprehensif",
-      "Human-to-Human (H2H) & K3 Standard Compliance Section",
-      "Direct Inquiry & Contact Channels Integration"
-    ],
-    "metrics": {
-      "score": "100%",
-      "label": "Responsive & Cross-Device Compatibility"
     }
   },
   {
