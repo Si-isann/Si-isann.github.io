@@ -436,10 +436,10 @@
   </div>
 
   <!-- ATS-Ready Printable CV Drawer/Modal -->
-  <div id="cv-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-0 sm:p-4 overflow-y-auto">
-    <div class="relative w-full max-w-3xl min-h-full sm:min-h-0 sm:my-8 flex flex-col justify-start">
+  <div id="cv-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden overflow-y-auto p-0 sm:p-4">
+    <div class="relative w-full max-w-3xl min-h-full sm:min-h-0 sm:my-8 mx-auto flex flex-col justify-start">
 
-      <div class="no-print sticky top-0 z-10 flex items-center justify-between bg-zinc-900 text-white px-4 sm:px-6 py-3 sm:py-3.5 rounded-none sm:rounded-t-2xl border-b border-zinc-800">
+      <div class="no-print sticky top-0 z-10 flex items-center justify-between bg-zinc-900 text-white px-4 sm:px-6 py-3 sm:py-3.5 rounded-none sm:rounded-t-2xl border-b border-zinc-800 shadow-md">
         <div class="flex items-center space-x-2">
           <i data-lucide="file-badge" class="w-4 h-4 text-brand"></i>
           <span class="font-mono text-xs uppercase tracking-wider">Curriculum Vitae — ATS Format</span>
@@ -827,13 +827,12 @@
     const cvModal = document.getElementById('cv-modal');
     function openCvModal() {
       cvModal.classList.remove('hidden');
-      cvModal.classList.add('flex');
+      cvModal.scrollTop = 0;
       document.body.style.overflow = 'hidden';
       lucide.createIcons();
     }
     function closeCvModal() {
       cvModal.classList.add('hidden');
-      cvModal.classList.remove('flex');
       document.body.style.overflow = 'auto';
     }
 
