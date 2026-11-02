@@ -61,14 +61,63 @@
 
     /* Print CV */
     @media print {
-      body * { visibility: hidden; }
-      #cv-modal-content, #cv-modal-content * { visibility: visible; }
-      #cv-modal-content {
-        position: absolute; left: 0; top: 0; width: 100%;
-        background: white !important; color: black !important;
-        box-shadow: none !important; border: none !important; padding: 0 !important;
+      html, body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
       }
-      .no-print { display: none !important; }
+      body * {
+        display: none !important;
+      }
+      #cv-modal {
+        display: block !important;
+        position: static !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        inset: auto !important;
+      }
+      #cv-modal > div {
+        display: block !important;
+        position: static !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+      }
+      #cv-modal-content {
+        display: block !important;
+        position: static !important;
+        background: white !important;
+        color: #18181b !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+      #cv-modal-content * {
+        display: revert !important;
+      }
+      .print-avoid-break {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      @page {
+        margin: 1.2cm 1.5cm;
+        size: A4 portrait;
+      }
     }
   </style>
 </head>
@@ -483,7 +532,7 @@
               </ul>
             </div>
 
-            <div>
+            <div class="print-avoid-break">
               <div class="flex justify-between items-baseline">
                 <h3 class="font-bold text-zinc-900">Dealer & Broker Elektronik — Independen</h3>
                 <span class="font-mono text-xs text-zinc-500">Jan 2020 – Sekarang</span>
@@ -496,22 +545,22 @@
               </ul>
             </div>
 
-            <div>
+            <div class="print-avoid-break">
               <div class="flex justify-between items-baseline">
                 <h3 class="font-bold text-zinc-900">Jr. Programmer (Magang) — PT Immobi Solusi Prima</h3>
                 <span class="font-mono text-xs text-zinc-500">Okt 2019 – Feb 2020</span>
               </div>
-              <ul class="list-disc list-inside mt-1.5 text-xs text-zinc-600 space-y-1">
+              <p class="text-[11px] text-zinc-500 italic">Magang / Internship</p>
+              <ul class="list-disc list-inside mt-1 text-xs text-zinc-600 space-y-1">
                 <li>Mengembangkan antarmuka pengguna (UI) yang responsif dan ramah pengguna menggunakan React Native.</li>
                 <li>Menyelesaikan tugas debugging dan pemecahan masalah berdasarkan masukan dari tim.</li>
                 <li>Menggunakan Git untuk version control dan manajemen kode proyek secara kolaboratif.</li>
               </ul>
             </div>
-          </div>
         </div>
 
         <!-- Pendidikan -->
-        <div class="mb-6">
+        <div class="mb-6 print-avoid-break">
           <h2 class="text-xs font-mono uppercase tracking-widest font-bold text-zinc-900 border-b border-zinc-200 pb-1 mb-2">PENDIDIKAN</h2>
           <div class="space-y-3 text-xs sm:text-sm">
             <div class="flex justify-between items-baseline">
@@ -533,7 +582,7 @@
         </div>
 
         <!-- Catatan -->
-        <div class="pt-2 border-t border-zinc-200 text-xs text-zinc-500">
+        <div class="border-t border-zinc-200 pt-3 text-[11px] text-zinc-500 font-mono print-avoid-break">
           <p><strong class="text-zinc-700">Catatan:</strong> Terbuka untuk kesempatan magang, full-time, maupun freelance di bidang pengembangan perangkat lunak, frontend, dan teknologi.</p>
         </div>
 
