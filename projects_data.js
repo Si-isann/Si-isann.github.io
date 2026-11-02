@@ -297,6 +297,41 @@ const ALPACODE_PROJECTS = [
   },
   {
     "id": 9,
+    "title": "PT. Trisula Energi Prima — Corporate Website",
+    "client": "PT. Trisula Energi Prima",
+    "year": "2026",
+    "category": "commercial",
+    "categoryLabel": "Energy & Oil-Gas Corporate Portal",
+    "summary": "Website profil korporat resmi penyedia barang dan jasa penunjang sektor MIGAS berestetika industri modern dengan showcase layanan komprehensif dan kontak terintegrasi.",
+    "fullDescription": "Website profil korporat resmi PT. Trisula Energi Prima (trienma.com) yang dirancang khusus untuk mempresentasikan kredibilitas penyedia barang dan jasa penunjang sektor minyak dan gas bumi (MIGAS). Mengadopsi arsitektur web performa tinggi dengan navigasi responsif, pendekatan Human-to-Human (H2H), showcase keunggulan standar mutu keselamatan K3, katalog layanan industri komprehensif, serta integrasi formulir kontak langsung.",
+    "problemSolved": "Menghadirkan representasi digital kredibel dan berstandar industri bagi perusahaan penunjang migas untuk memperkuat kepercayaan klien korporat, mitra kontraktor, dan stakeholder.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Responsive Layout",
+      "Modern Typography",
+      "Corporate SEO"
+    ],
+    "liveUrl": "https://trienma.com",
+    "screenshots": [
+      "screenshots/trienma_1.jpg",
+      "screenshots/trienma_2.jpg",
+      "screenshots/trienma_3.jpg"
+    ],
+    "features": [
+      "Modern Industrial Hero & Value Proposition Showcase",
+      "Rangkaian Layanan Penunjang Sektor Migas Komprehensif",
+      "Human-to-Human (H2H) & K3 Standard Compliance Section",
+      "Direct Inquiry & Contact Channels Integration"
+    ],
+    "metrics": {
+      "score": "100%",
+      "label": "Responsive & Cross-Device Compatibility"
+    }
+  },
+  {
+    "id": 10,
     "title": "Ikhsan Tri Handoko Personal Portfolio",
     "client": "Personal Project",
     "year": "2026",
@@ -313,7 +348,7 @@ const ALPACODE_PROJECTS = [
       "Lucide Icons",
       "Python HTTP Server"
     ],
-    "liveUrl": "http://localhost:8080",
+    "liveUrl": "https://si-isann.github.io",
     "screenshots": [
       "screenshots/ikhsan_portfolio_1.jpg",
       "screenshots/ikhsan_portfolio_2.jpg",
