@@ -133,13 +133,20 @@
     <!-- Nav Links + Theme Switcher -->
     <div class="flex items-center space-x-6 text-sm text-zinc-500 dark:text-zinc-400">
       <nav class="hidden sm:flex items-center space-x-5">
-        <a href="#projects" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Projects</a>
-        <a href="#experience" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
-        <a href="#skills" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Tech Stack</a>
-        <a href="#about" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">About</a>
+        <a id="nav-projects" href="#projects" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Projects</a>
+        <a id="nav-exp" href="#experience" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
+        <a id="nav-skills" href="#skills" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Tech Stack</a>
+        <a id="nav-about" href="#about" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">About</a>
       </nav>
 
       <span class="hidden sm:inline text-zinc-300 dark:text-zinc-700">|</span>
+
+      <!-- Language Toggle (ID / EN) -->
+      <button onclick="toggleLang()" class="flex items-center space-x-1 px-2.5 py-1 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono font-semibold transition-colors" title="Ganti Bahasa / Switch Language">
+        <span id="lang-btn-text" class="text-brand">ID</span>
+        <span class="text-zinc-400">/</span>
+        <span class="text-zinc-500 dark:text-zinc-400">EN</span>
+      </button>
 
       <!-- Theme Switcher -->
       <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-colors" title="Toggle Dark/Light Mode">
@@ -168,7 +175,7 @@
 
             <!-- In-Circle Centered Frosted Overlay -->
             <div id="avatar-overlay" class="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-200 group-hover:bg-black/30 pointer-events-none p-1">
-              <span class="text-[10px] sm:text-xs font-semibold tracking-tight text-white leading-none text-center select-none animate-blink drop-shadow-sm">
+              <span id="txt-tap-avatar" class="text-[10px] sm:text-xs font-semibold tracking-tight text-white leading-none text-center select-none animate-blink drop-shadow-sm">
                 Tap to reveal
               </span>
             </div>
@@ -183,7 +190,7 @@
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
           </div>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+          <p id="txt-subhead" class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
             Software Developer · Web Builder · Electronics Specialist
           </p>
           
@@ -207,7 +214,7 @@
       </div>
 
       <!-- Headline & Bio Copy (Editorial Typography) -->
-      <div class="space-y-4">
+      <div id="bio-container" class="space-y-4">
         <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
           I Build, Create & <span class="text-brand">Optimize.</span>
         </h2>
@@ -227,7 +234,7 @@
       <!-- Resume Button -->
       <div>
         <button onclick="openCvModal()" class="group inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-3 rounded-lg text-sm sm:text-base font-medium hover:scale-[1.03] transition-transform shadow-sm">
-          <span>View Resume</span>
+          <span id="btn-resume-label">Lihat Resume</span>
           <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
         </button>
       </div>
@@ -238,8 +245,8 @@
           <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
             4<span class="text-[#0284c7]">+</span>
           </p>
-          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
-            Years of Experience
+          <p id="stat-1-label" class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+            Tahun Pengalaman
           </p>
         </div>
 
@@ -247,8 +254,8 @@
           <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
             10<span class="text-[#0284c7]">+</span>
           </p>
-          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
-            Websites Built
+          <p id="stat-2-label" class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+            Website Dibangun
           </p>
         </div>
 
@@ -257,7 +264,7 @@
           <p class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[2rem]">
             End-to-End
           </p>
-          <p class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
+          <p id="stat-3-label" class="mt-1 text-xs font-medium leading-5 text-zinc-500 dark:text-zinc-400 sm:text-sm">
             Technical & IT Support
           </p>
         </div>
@@ -268,14 +275,14 @@
     <!-- Experience Section (Timeline style) -->
     <section id="experience" class="space-y-6 pt-4 border-t border-zinc-100 dark:border-darkBorder">
       <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Experience</h3>
+        <h3 id="exp-heading" class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Pengalaman</h3>
         <button onclick="openCvModal()" class="text-xs font-medium text-brand hover:underline flex items-center space-x-1">
-          <span>View Details</span>
+          <span id="exp-view-details">Lihat Detail</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
 
-      <div class="space-y-6">
+      <div id="exp-list" class="space-y-6">
         
         <!-- Experience Item 1: IT Support Pasar Modal -->
         <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
@@ -325,8 +332,8 @@
     <!-- Projects Section -->
     <section id="projects" class="space-y-6 pt-4 border-t border-zinc-100 dark:border-darkBorder">
       <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Featured Projects</h3>
-        <span class="text-xs text-zinc-400 dark:text-zinc-500 font-mono">10 Live Deployments</span>
+        <h3 id="projects-heading" class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Proyek Unggulan</h3>
+        <span id="projects-count-badge" class="text-xs text-zinc-400 dark:text-zinc-500 font-mono">10 Live Deployments</span>
       </div>
 
       <!-- Project Cards Grid -->
@@ -337,12 +344,12 @@
 
     <!-- Technologies Section -->
     <section id="skills" class="space-y-4 pt-4 border-t border-zinc-100 dark:border-darkBorder">
-      <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Technologies</h3>
+      <h3 id="tech-heading" class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Teknologi & Keahlian</h3>
       
       <!-- Tech Pill Groups -->
       <div class="space-y-3">
         <div>
-          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Frontend & Interface</p>
+          <p id="tech-cat-1" class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Frontend & Interface</p>
           <div class="flex flex-wrap gap-1.5 text-xs font-medium">
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">React 19</span>
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Next.js</span>
@@ -355,7 +362,7 @@
         </div>
 
         <div>
-          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Backend & Database</p>
+          <p id="tech-cat-2" class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Backend & Database</p>
           <div class="flex flex-wrap gap-1.5 text-xs font-medium">
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">PHP</span>
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Laravel</span>
@@ -371,7 +378,7 @@
         </div>
 
         <div>
-          <p class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Hardware & Networking</p>
+          <p id="tech-cat-3" class="text-xs font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-2">Hardware & Networking</p>
           <div class="flex flex-wrap gap-1.5 text-xs font-medium">
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Jaringan Internet / WiFi & Routing</span>
             <span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Laptop / PC Diagnostics</span>
@@ -385,8 +392,8 @@
 
     <!-- Education Section -->
     <section id="about" class="space-y-4 pt-4 border-t border-zinc-100 dark:border-darkBorder">
-      <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Education</h3>
-      <div class="space-y-3">
+      <h3 id="edu-heading" class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">Pendidikan</h3>
+      <div id="edu-list" class="space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
           <div>
             <h4 class="font-bold text-zinc-900 dark:text-white">Teknik Informatika — Universitas Indraprasta PGRI (UNINDRA)</h4>
@@ -421,7 +428,7 @@
   <aside class="fixed bottom-6 right-6 z-40">
     <a href="mailto:ikhsan.mailwork@gmail.com" class="inline-flex items-center space-x-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2.5 rounded-full text-xs font-semibold shadow-xl hover:scale-105 transition-transform border border-zinc-800 dark:border-zinc-200">
       <i data-lucide="briefcase" class="w-3.5 h-3.5 text-brand"></i>
-      <span>Work with Ikhsan</span>
+      <span id="floating-cta-text">Kolaborasi dengan Ikhsan</span>
     </a>
   </aside>
 
@@ -598,6 +605,264 @@
     // Lucide Icons
     lucide.createIcons();
 
+    // Multi-Language (ID / EN) State & Dict
+    let currentLang = localStorage.getItem('site_lang') || 'id';
+
+    const I18N = {
+      id: {
+        htmlLang: 'id',
+        navProjects: 'Proyek',
+        navExp: 'Pengalaman',
+        navSkills: 'Keahlian',
+        navAbout: 'Tentang',
+        tapAvatar: 'Tap untuk foto asli',
+        subhead: 'Software Developer · Web Builder · Electronics Specialist',
+        btnResume: 'Lihat Resume',
+        stat1: 'Tahun Pengalaman',
+        stat2: 'Website Dibangun',
+        stat3: 'Technical & IT Support',
+        expHeading: 'Pengalaman',
+        expViewDetails: 'Lihat Detail',
+        projectsHeading: 'Proyek Unggulan',
+        techHeading: 'Teknologi & Keahlian',
+        techCat1: 'Frontend & Interface',
+        techCat2: 'Backend & Database',
+        techCat3: 'Hardware & Networking',
+        eduHeading: 'Pendidikan',
+        floatingCta: 'Kolaborasi dengan Ikhsan',
+        projectDetailBtn: 'Detail Proyek',
+        closeBtn: 'Tutup',
+        openLiveBtn: 'Buka Website Live',
+        clientLabel: 'Klien',
+        yearLabel: 'Tahun',
+        challengeLabel: 'Tantangan & Solusi Teknis',
+        featuresLabel: 'Fitur Terintegrasi',
+        cvPrintBtn: 'Cetak / Simpan PDF',
+        cvPrintBtnSm: 'Cetak',
+        bio: `
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            I Build, Create & <span class="text-brand">Optimize.</span>
+          </h2>
+          <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal">
+            <p>
+              Mahasiswa <strong class="text-zinc-900 dark:text-white font-semibold">Teknik Informatika</strong> dengan latar belakang teknis di bidang pengembangan perangkat lunak, pembuatan website, dan desain antarmuka pengguna, serta aktif mendalami <strong class="text-brand dark:text-blue-400 font-semibold">AI Agent</strong> untuk otomasi keperluan sehari-hari.
+            </p>
+            <p>
+              Berpengalaman magang sebagai <strong class="text-zinc-900 dark:text-white font-semibold">Jr. Programmer</strong> dalam aplikasi mobile, serta memiliki keahlian praktis sebagai dealer, broker, sekaligus teknisi servis perangkat elektronik (laptop, smartphone, konsol Nintendo, dan perangkat lainnya).
+            </p>
+            <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+              Mudah berinteraksi dengan beragam orang, adaptif di lingkungan dinamis, serta memadukan keterampilan teknis, problem solving, dan semangat belajar tinggi untuk berkontribusi maksimal dalam tim profesional.
+            </p>
+          </div>
+        `,
+        expItems: `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">IT Support</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">PT Pusat Pendidikan Profesional Pasar Modal · Pekerja Lepas / Freelance</p>
+              <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+                <li>Membantu pengelolaan, pemeliharaan rutin, dan troubleshooting infrastruktur perangkat keras (PC/laptop) dan sistem operasional.</li>
+                <li>Monitoring, konfigurasi, dan pemecahan masalah jaringan internet, WiFi kantor, serta stabilitas konektivitas kerja.</li>
+                <li>Memberikan dukungan teknis responsif bagi staf dan kelancaran kegiatan pelatihan/edukasi pasar modal.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">2023 – Sekarang</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Dealer & Broker Elektronik</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Independen · Pekerja Lepas / Freelance</p>
+              <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+                <li>Konsultasi spesifikasi produk elektronik (laptop, smartphone, konsol handheld) sesuai kebutuhan pelanggan.</li>
+                <li>Negosiasi harga jual-beli, inspeksi fisik/komponen, dan diagnosis hardware perangkat.</li>
+                <li>Membangun strategi promosi, pemasaran mandiri, serta garansi after-sales terpercaya.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Jan 2020 – Sekarang</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Jr. Programmer (Magang)</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">PT Immobi Solusi Prima</p>
+              <ul class="list-disc list-inside mt-1.5 text-xs text-zinc-500 dark:text-zinc-400 space-y-1">
+                <li>Mengembangkan antarmuka pengguna (UI) aplikasi mobile menggunakan React Native.</li>
+                <li>Menyelesaikan tugas debugging dan perbaikan performa sistem.</li>
+                <li>Menggunakan Git untuk version control dan manajemen kode proyek terstruktur.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Okt 2019 – Feb 2020</span>
+          </div>
+        `,
+        eduItems: `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white">Teknik Informatika — Universitas Indraprasta PGRI (UNINDRA)</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Strata 1 (S1) · IPK: <strong>3,35</strong></p>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">Sep 2022 – Sekarang</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white">Rekayasa Perangkat Lunak (RPL) — SMKN 1 Kota Bekasi</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Fokus Pemrograman, Rekayasa Perangkat Lunak & Logika Komputasi</p>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">2018 – 2021</span>
+          </div>
+        `
+      },
+      en: {
+        htmlLang: 'en',
+        navProjects: 'Projects',
+        navExp: 'Experience',
+        navSkills: 'Tech Stack',
+        navAbout: 'About',
+        tapAvatar: 'Tap to reveal',
+        subhead: 'Software Developer · Web Builder · Electronics Specialist',
+        btnResume: 'View Resume',
+        stat1: 'Years of Experience',
+        stat2: 'Websites Built',
+        stat3: 'Technical & IT Support',
+        expHeading: 'Experience',
+        expViewDetails: 'View Details',
+        projectsHeading: 'Featured Projects',
+        techHeading: 'Technologies & Skills',
+        techCat1: 'Frontend & Interface',
+        techCat2: 'Backend & Database',
+        techCat3: 'Hardware & Networking',
+        eduHeading: 'Education',
+        floatingCta: 'Work with Ikhsan',
+        projectDetailBtn: 'Project Details',
+        closeBtn: 'Close',
+        openLiveBtn: 'Open Live Website',
+        clientLabel: 'Client',
+        yearLabel: 'Year',
+        challengeLabel: 'Technical Challenge & Solution',
+        featuresLabel: 'Integrated Features',
+        cvPrintBtn: 'Print / Save PDF',
+        cvPrintBtnSm: 'Print',
+        bio: `
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            I Build, Create & <span class="text-brand">Optimize.</span>
+          </h2>
+          <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal">
+            <p>
+              Undergraduate student in <strong class="text-zinc-900 dark:text-white font-semibold">Informatics Engineering</strong> with a solid technical foundation in software development, modern web construction, and UI design, actively engineering <strong class="text-brand dark:text-blue-400 font-semibold">Autonomous AI Agents</strong> for daily automation workflows.
+            </p>
+            <p>
+              Experienced as a mobile app <strong class="text-zinc-900 dark:text-white font-semibold">Jr. Programmer</strong> (React Native), with extensive hands-on expertise as an independent dealer, broker, and hardware technician for electronics (laptops, smartphones, Nintendo consoles, and gaming devices).
+            </p>
+            <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+              Communicative across diverse teams, highly adaptive in fast-paced environments, combining technical craft, analytical problem solving, and continuous learning to deliver high-impact results.
+            </p>
+          </div>
+        `,
+        expItems: `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">IT Support</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Capital Market Professional Education Center · Freelance</p>
+              <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+                <li>Manage, maintain, and troubleshoot hardware infrastructure (PCs/laptops) and operational systems.</li>
+                <li>Monitor, configure, and resolve office network, Wi-Fi routing, and connectivity stability.</li>
+                <li>Provide responsive technical support ensuring smooth training and capital market educational sessions.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">2023 – Present</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Electronics Dealer & Broker</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Independent · Freelance</p>
+              <ul class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 space-y-1 list-disc list-inside">
+                <li>Consult clients on hardware specifications (laptops, smartphones, handheld consoles) based on tailored budgets.</li>
+                <li>Price negotiation, comprehensive physical/component inspection, and hardware diagnostics.</li>
+                <li>Build promotional marketing, self-distribution strategies, and trusted after-sales technical warranty.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Jan 2020 – Present</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 group">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white group-hover:text-brand transition-colors">Jr. Programmer (Internship)</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">PT Immobi Solusi Prima</p>
+              <ul class="list-disc list-inside mt-1.5 text-xs text-zinc-500 dark:text-zinc-400 space-y-1">
+                <li>Built responsive and user-friendly mobile application interfaces with React Native.</li>
+                <li>Conducted collaborative debugging and application performance optimization.</li>
+                <li>Leveraged Git for version control and structured team repository workflows.</li>
+              </ul>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5 sm:mt-0">Oct 2019 – Feb 2020</span>
+          </div>
+        `,
+        eduItems: `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white">Informatics Engineering — Universitas Indraprasta PGRI (UNINDRA)</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Bachelor of Computer Science (S1) · GPA: <strong>3.35</strong></p>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">Sep 2022 – Present</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
+            <div>
+              <h4 class="font-bold text-zinc-900 dark:text-white">Software Engineering (RPL) — SMKN 1 Kota Bekasi</h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Vocational Degree in Software Development & Computational Logic</p>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex-shrink-0">2018 – 2021</span>
+          </div>
+        `
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('site_lang', lang);
+      document.documentElement.lang = I18N[lang].htmlLang;
+
+      // Update button state
+      const btnText = document.getElementById('lang-btn-text');
+      if (btnText) {
+        btnText.textContent = lang.toUpperCase();
+      }
+
+      // Update static labels
+      const d = I18N[lang];
+      const setIfExists = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = val;
+      };
+
+      setIfExists('txt-tap-avatar', d.tapAvatar);
+      setIfExists('txt-subhead', d.subhead);
+      setIfExists('nav-projects', d.navProjects);
+      setIfExists('nav-exp', d.navExp);
+      setIfExists('nav-skills', d.navSkills);
+      setIfExists('nav-about', d.navAbout);
+      setIfExists('btn-resume-label', d.btnResume);
+      setIfExists('stat-1-label', d.stat1);
+      setIfExists('stat-2-label', d.stat2);
+      setIfExists('stat-3-label', d.stat3);
+      setIfExists('exp-heading', d.expHeading);
+      setIfExists('exp-view-details', d.expViewDetails);
+      setIfExists('projects-heading', d.projectsHeading);
+      setIfExists('tech-heading', d.techHeading);
+      setIfExists('tech-cat-1', d.techCat1);
+      setIfExists('tech-cat-2', d.techCat2);
+      setIfExists('tech-cat-3', d.techCat3);
+      setIfExists('edu-heading', d.eduHeading);
+      setIfExists('floating-cta-text', d.floatingCta);
+      setIfExists('bio-container', d.bio);
+      setIfExists('exp-list', d.expItems);
+      setIfExists('edu-list', d.eduItems);
+
+      // Re-render project cards with localized strings
+      renderProjectCards();
+      lucide.createIcons();
+    }
+
+    function toggleLang() {
+      applyLanguage(currentLang === 'id' ? 'en' : 'id');
+    }
+
     // Avatar Swap Logic (Default: Sketch -> Click: Ikhsan Normal)
     let isSketch = true;
     function toggleAvatar() {
@@ -675,7 +940,7 @@
           <!-- Bottom Actions: Live Link + Details -->
           <div class="pt-4 mt-3 border-t border-zinc-100 dark:border-darkBorder flex items-center justify-between">
             <button onclick="openProjectModal(${p.id})" class="text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:text-brand flex items-center space-x-1">
-              <span>Detail Proyek</span>
+              <span>${I18N[currentLang].projectDetailBtn}</span>
               <i data-lucide="info" class="w-3.5 h-3.5"></i>
             </button>
 
@@ -752,7 +1017,7 @@
 
       const liveBtn = p.liveUrl 
         ? `<a href="${p.liveUrl}" target="_blank" class="bg-brand hover:bg-sky-600 text-white px-5 py-2.5 rounded-full text-xs font-semibold flex items-center space-x-2 transition-colors shadow-sm">
-            <span>Buka Website Live</span>
+            <span>${I18N[currentLang].openLiveBtn}</span>
             <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
           </a>`
         : '';
@@ -779,9 +1044,9 @@
         </div>
         
         <div class="flex items-center space-x-3 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-2">
-          <span>Klien: <strong class="text-zinc-800 dark:text-zinc-200">${p.client}</strong></span>
+          <span>${I18N[currentLang].clientLabel}: <strong class="text-zinc-800 dark:text-zinc-200">${p.client}</strong></span>
           <span>•</span>
-          <span>Tahun: <strong class="text-zinc-800 dark:text-zinc-200">${p.year}</strong></span>
+          <span>${I18N[currentLang].yearLabel}: <strong class="text-zinc-800 dark:text-zinc-200">${p.year}</strong></span>
         </div>
 
         <h3 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white mt-1 mb-3">${p.title}</h3>
@@ -790,13 +1055,13 @@
           <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">${p.fullDescription}</p>
           ${p.problemSolved ? `
             <div class="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-900 border-l-2 border-brand text-xs text-zinc-500 dark:text-zinc-400">
-              <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Tantangan & Solusi Teknis:</strong> ${p.problemSolved}
+              <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">${I18N[currentLang].challengeLabel}:</strong> ${p.problemSolved}
             </div>
           ` : ''}
         </div>
 
         <div class="mb-5">
-          <p class="font-mono text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider font-semibold mb-2">Fitur Terintegrasi:</p>
+          <p class="font-mono text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider font-semibold mb-2">${I18N[currentLang].featuresLabel}:</p>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">${featureList}</ul>
         </div>
         
@@ -809,7 +1074,7 @@
 
         <div class="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-darkBorder">
           ${liveBtn}
-          <button onclick="closeProjectModal()" class="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-zinc-800 transition-colors ml-auto">Tutup</button>
+          <button onclick="closeProjectModal()" class="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-zinc-800 transition-colors ml-auto">${I18N[currentLang].closeBtn}</button>
         </div>
       `;
 
@@ -844,7 +1109,7 @@
 
     // Init
     window.addEventListener('DOMContentLoaded', () => {
-      renderProjectCards();
+      applyLanguage(currentLang);
     });
   </script>
 </body>
